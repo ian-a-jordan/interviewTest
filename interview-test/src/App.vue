@@ -1,21 +1,26 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Dog Logo" class="logo" src="./assets/dog_animation.json" width="125" height="125" />
-
+  <header v-if="showHeader">
+    <img alt="Dog Logo" class="logo" src="./dog_animation.json" width="125" height="125" />
     <div class="wrapper">
-      <HelloWorld msg="Good luck!" />
+      <HelloWorld msg="頑張って Lisa!" />
     </div>
   </header>
 
   <main>
-    <TheWelcome />
+    <router-view />
   </main>
 </template>
+
+<script setup>
+import { useRoute } from 'vue-router';
+import { computed } from 'vue';
+import HelloWorld from './components/HelloWorld.vue';
+
+const route = useRoute();
+
+// Only show header on the root path
+const showHeader = computed(() => route.path === '/');
+</script>
 
 <style scoped>
 header {
