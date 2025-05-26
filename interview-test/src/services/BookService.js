@@ -33,7 +33,7 @@ export async function connectToBooksChannel(callback) {
       books.push(fakeBook);
       callback(fakeBook);
     }
-  }, 3000);
+  }, 1000);
 
   return {
     close() {
